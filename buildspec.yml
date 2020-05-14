@@ -12,10 +12,12 @@ phases:
       - composer install
       - cp .env.example .env
       - php artisan key:generate
+
   build:
     commands:
       - echo Run unit testing ...
       - vendor/bin/phpunit
+
   post_build:
     commands:
       - echo Build completed on `date`
