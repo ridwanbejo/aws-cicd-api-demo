@@ -1,0 +1,21 @@
+
+version: 0.2
+
+phases:
+  pre_build:
+    commands:
+      - echo Starting code build ...
+      - curl -s https://getcomposer.org/installer | php
+      - mv composer.phar /usr/local/bin/composer
+      - echo Downloading dependencies ...
+      - composer --version
+      - composer install
+      - cp .env.example .env
+      - php artisan key:generate
+  build:
+    commands:
+      - echo Run unit testing ...
+      - vendor/bin/phpunit
+  post_build:
+    commands:
+      - echo Build completed on `date`
